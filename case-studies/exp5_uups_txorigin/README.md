@@ -61,3 +61,27 @@ Unrestricted drain: Conditional on malicious implementation
 
 Strongest provable flaw:
 Authorization uses tx.origin instead of msg.sender.
+
+---
+
+# PRACTICAL MODE OVERLAY
+
+In real-world deployment:
+
+- Owner EOA interaction is highly phishable.
+- UpgradeToAndCall allows single-transaction takeover.
+- Malicious implementation can:
+  - Drain proxy ETH
+  - Zero owner slot
+  - Selfdestruct proxy
+  - Brick contract via address(0)
+
+Risk Classification (Production Context):
+
+| Risk | Classification |
+|------|---------------|
+| Phishing-based upgrade takeover | Critical |
+| Proxy permanent freeze | Critical |
+| Arbitrary implementation injection | Critical |
+
+Final Production Rating: 🔴 Critical
